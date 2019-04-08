@@ -93,13 +93,13 @@ function writeTile(colors = Array(8 * 8).fill(0)) {
     const highBits = getUintValue(
       colors.slice(index, index + 8).map(v => (v & 2 ? 1 : 0))
     )
-    buffer.writeUInt8(highBits, row)
+    buffer.writeUInt8(highBits, row + 8)
   }
 
   for (let row = 0; row < 8; row++) {
     const index = row * 8
     const lowBits = getUintValue(colors.slice(index, index + 8).map(v => v & 1))
-    buffer.writeUInt8(lowBits, row + 8)
+    buffer.writeUInt8(lowBits, row)
   }
 
   return buffer
